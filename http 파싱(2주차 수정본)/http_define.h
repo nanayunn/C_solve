@@ -46,11 +46,13 @@ typedef struct file
 
 typedef struct http_request
 {
-	request_line_t request_line;
-	list header;
-	char *garbage;
+	char * request_line;
+	char * header;
+	char * garbage;
 
 	int request_line_length;
+	int header_line_length;
+	int header_num;
 	int garbage_length;
 
 }http_request_t;
@@ -59,9 +61,10 @@ typedef struct request_line
 {
 	char *method;
 	char *version;
-	URI_t uri;
+	char *uri;
 
 	int method_length;
+	int uri_length;
 	int version_length;
 
 }request_line_t;
@@ -93,3 +96,8 @@ typedef struct List {
 	struct header *head;
 	unsigned int list_size;
 } list;
+
+
+file_t * file;
+http_request_t * http_request;
+request_line_t * request_line;

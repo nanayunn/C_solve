@@ -1,8 +1,7 @@
 #include"http_define.h"
 
 
-
-file_t * file;
+extern file_t * file;
 
 
 int main(int argc, char *argv[])
@@ -27,8 +26,8 @@ int main(int argc, char *argv[])
 	}
 
 
-	get_file_size(argv[1], file);
-	read_file(file);
+	get_file_size(argv[1]);
+	read_file();
 
 	return 0;
 }
@@ -49,7 +48,7 @@ void getchar_clear(void)
 /*file_size를 계산하는 함수
 매개 변수 : char * file_path
 반환값 : file_size, 에러시 -1*/
-int get_file_size(char *argv_val, file_t * file)
+int get_file_size(char *argv_val)
 {
 	/*전달된 매개변수 예외 처리*/
 	if( argv_val == NULL ){
@@ -88,7 +87,7 @@ return 0;
 /*파일을 읽는 함수
 매개변수 : 전역변수 구조체 file
 반환값 : 0, 에러시 -1*/
-int read_file(file_t * file)
+int read_file(void)
 {	
 	/*구조체 포인터 매개변수에 대한 Exception 처리*/
 	if( file == NULL ){
