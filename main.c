@@ -12,15 +12,15 @@ int parse_uri(URI_t * uri, request_line_t * request_line ,length_t * length);
 int main(int argc, char *argv[])
 {	
 	char * file_path = NULL;
-    char * end_of_file = NULL;
+    	char * end_of_file = NULL;
 
 	int argv_length = 0;
 	int result = 0;
 
-    file_t * file;
+    	file_t * file;
 	length_t * length;
 
-    file = malloc(sizeof(file_t));
+    	file = malloc(sizeof(file_t));
 	length = malloc(sizeof(length_t));
 	
 	/*argc 값을 기준으로 정해진 값이 아니면 안내 메세지를 출력*/
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
 	read_file(file_path, file);
 
-    start_parse(file, length);
+    	start_parse(file, length);
 
 	free(length);
 	free(file);
@@ -68,7 +68,7 @@ file_size를 계산하는 함수
 반환값 : file_size, 에러시 -1*/
 int get_file_size(char * file_path)
 {
-    printf("get file size start\n");
+    	printf("get file size start\n");
 	/*전달된 매개변수 예외 처리*/
 	if( file_path == NULL ){
 		printf("get_file_size : 매개변수 전달 에러 입니다.\n");
@@ -87,7 +87,7 @@ int get_file_size(char * file_path)
         printf("get_file_size : 파일 정보를 읽어오는 것에 실패하였습니다....\n");
 		return -1;
 	}
-    printf("result success: %d\n", result);
+    	printf("result success: %d\n", result);
 
 	/* 파일 사이즈 Exception */
 	if ( stat_stat.st_size < 0 ){
@@ -109,16 +109,16 @@ return stat_stat.st_size;
 int read_file(char * file_path, file_t * file)
 {	
 
-    printf("read file start\n");
+   	 printf("read file start\n");
 	/*구조체 포인터 매개변수에 대한 Exception 처리*/
 	if( file_path == NULL ){
 		printf("read_file : 매개변수 전달 에러입니다.\n");
 		return -1;
 	}
-    if ( file == NULL ){
+    	if ( file == NULL ){
         printf("구조체 에러 입니다.\n");
         return -1;
-    }
+    	}
 
 	/*사용하는 변수 초기화*/
 	int fd = 0;
@@ -132,7 +132,7 @@ int read_file(char * file_path, file_t * file)
 	}else if ( file->written_size == 0 ){
         printf("빈 파일 입니다. 파싱을 종료합니다.\n");
         return -1;
-    }
+    	}
     
 	fd = open ( file_path, O_RDONLY );
 	if ( fd < 0 ){
@@ -140,7 +140,7 @@ int read_file(char * file_path, file_t * file)
 
 		return -1;
 	}
-    printf("fd 상태 : %d\n", fd);
+    	printf("fd 상태 : %d\n", fd);
 
 	/*open한 파일을 read로 읽어오고, temp_val에 읽은 바이트 수를 임시 저장한 후
 	file_size와 비교하여 read가 완전하게 이루어졌는지 체크*/
@@ -157,7 +157,7 @@ int read_file(char * file_path, file_t * file)
 		return -1;
 	}
 
-    printf("저장된 파일 사이즈 : %d\n읽어들인 바이트 수 : %d\n", file->written_size, temp_val);
+    	printf("저장된 파일 사이즈 : %d\n읽어들인 바이트 수 : %d\n", file->written_size, temp_val);
 
 	/*파일을 닫아준다.*/
 	close(fd);
@@ -230,8 +230,7 @@ int start_parse(file_t * file, length_t * length)
     }
 
 
-
-    parse_request_line(request_line, length, element_start, temp_size);
+	parse_request_line(request_line, length, element_start, temp_size);
 	printf("aa\n");
 	printf("uri length : %d\n", length->uri_length);
 
@@ -262,7 +261,7 @@ int parse_request_line(request_line_t * request_line, length_t * length,  char *
 {	
 	printf("requestline parse\n");
 
-    char * end_of_element = NULL;
+    	char * end_of_element = NULL;
 
 	int changed_size = 0;
 	int parse_element_size = 0;
